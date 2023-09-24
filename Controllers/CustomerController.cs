@@ -10,14 +10,14 @@ namespace WebApplication3.Controllers
     {
         // GET: api/<CustomerController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> getAllCustomers()
         {
             return new string[] { "value1", "value2" };
         }
 
         // GET api/<CustomerController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public string getCustById(int id)
         {
             return "value";
         }

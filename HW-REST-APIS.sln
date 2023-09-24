@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication3", "WebApplication3.csproj", "{BC463714-FD32-4220-8961-68321CB91458}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HW-REST-APIS", "HW-REST-APIS.csproj", "{BC463714-FD32-4220-8961-68321CB91458}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
