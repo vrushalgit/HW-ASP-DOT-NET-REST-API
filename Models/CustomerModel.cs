@@ -1,18 +1,27 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
-namespace HWRESTAPIS.Models
-{
-    public class CustomerModel
-{
-    [Key]
-    public int Id { get; set; }
-    [Required] public string? CustFullName { get; set; }
+namespace HWRESTAPIS.Models {
+    public class CustomerModel {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
-    [Phone]
-    public long Contact { get; set; }
+        [StringLength(70)]
+        [Required]
+        public string? CustFullName { get; set; }
 
-    [EmailAddress]
-    public string? Email { get; set; }
+        [Phone]
+        [StringLength(15)]
+        public string? Contact { get; set; }
 
-}
+
+        [Required]
+        [EmailAddress]
+        [StringLength(70)]
+        public string? Email { get; set; }
+
+    }
 }

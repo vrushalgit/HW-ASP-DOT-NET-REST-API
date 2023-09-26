@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Adding Services for ApplicationDbContent
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
-    builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(10,4,13))
+    builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(10, 4, 13))
     ));
 
 
@@ -21,8 +21,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+if( app.Environment.IsDevelopment() ) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
