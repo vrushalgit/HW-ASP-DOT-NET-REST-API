@@ -1,43 +1,54 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HWRESTAPIS.Data;
+using HWRESTAPIS.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text.Json.Nodes;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace WebApplication3.Controllers
-{
+namespace HWRESTAPIS.Controllers {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : ControllerBase
-    {
-        // GET: api/<CustomerController>
-        [HttpGet]
-        public IEnumerable<string> getAllCustomers()
-        {
-            return new string[] { "value1", "value2" };
+    public class CustomerController : ControllerBase {
+        private readonly ApplicationDbContext _db;
+        public CustomerController(ApplicationDbContext db) {
+            _db = db;
         }
+        // GET: api/<CustomerController>
+        /*[HttpGet]
+        public IActionResult getAllCustomers() {
+            IEnumerable<CustomerModel> list = _db.Customers;
+            return new ObjectResult(null) { StatusCode = 200, Value = new { Message = "Success", Obj = list } };
+        }
+*/
 
         // GET api/<CustomerController>/5
-        [HttpGet("{id}")]
-        public string getCustById(int id)
-        {
-            return "value";
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetCustById(int Id) {
+
+            if( Id == 0 ) {
+                IEnumerable<CustomerModel> list = _db.Customers;
+                return new ObjectResult(null) { StatusCode = 200, Value = new { Message = "Success", Obj = list } };
+            }
+            else {
+                var customer = await _db.Customers.FindAsync(Id);
+
+                return customer == null ?
+                 new ObjectResult(new {
+                     Message = "Id " + Id + " Not Found",
+                     Obj = new Object[] { }
+                 }) {
+                     StatusCode = 200
+                 } : new ObjectResult(new {
+                     Message = "Success",
+                     Obj = new Object[] { customer }
+                 }) {
+                     StatusCode = 200
+                 };
+            }
         }
 
-        // POST api/<CustomerController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
 
-        // PUT api/<CustomerController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

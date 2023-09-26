@@ -1,12 +1,15 @@
+using HWRESTAPIS.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 // Adding Services for ApplicationDbContent
-/*builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
+    builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(10,4,13))
     ));
-*/
+
 
 builder.Services.AddControllers();
 
