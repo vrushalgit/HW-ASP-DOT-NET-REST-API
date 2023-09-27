@@ -77,10 +77,10 @@ namespace HWRESTAPIS.Controllers {
 
                    // var oldCustomer = await _db.Customers.FindAsync(id);
                     //if( oldCustomer != null ) {
-                    if(id==customer.Id) { 
+                    if(id==customer.Id) {
                         _db.Entry(customer).State = EntityState.Modified;
-                       // _db.Customers.Update(customer);
-                       await _db.SaveChangesAsync();
+                        // _db.Customers.Update(customer);
+                        await _db.SaveChangesAsync();
                         return new ObjectResult(new { Message = "Customer Updated Successfully" }) { StatusCode = 201 };
 
                     }

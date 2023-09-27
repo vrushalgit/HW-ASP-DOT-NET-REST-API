@@ -11,6 +11,8 @@ namespace HWRESTAPIS.Models {
 
         [StringLength(70)]
         [Required]
+        
+        [CustomValidatioForCustomer]
         public string? CustFullName { get; set; }
 
         [Phone]
@@ -19,6 +21,7 @@ namespace HWRESTAPIS.Models {
 
 
         [Required]
+        //[Required(ErrorMessage = "Please Enter Email Address.....")]
         [EmailAddress]
         [StringLength(70)]
         public string? Email { get; set; }
